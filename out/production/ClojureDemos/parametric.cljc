@@ -6,11 +6,10 @@
               infinite? numerator partial ref zero?])
   (:require [emmy.calculus.manifold :as cm]
             [emmy.clerk :as ec]
-            [emmy.env :refer :all]
+    [emmy.env :refer :all]
             [emmy.leva :as leva]
             [emmy.mathbox.plot :as plot]
-            [emmy.viewer :as ev]
-            [nextjournal.clerk :as clerk]))
+            [emmy.viewer :as ev]))
 
 {:nextjournal.clerk/width :wide}
 
