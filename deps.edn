@@ -1,0 +1,9 @@
+{:deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        org.clojure/core.logic {:mvn/version "1.1.0"}
+        my-git-lib/my-git-lib {:git/url "https://github.com/alexgian/emmy"
+                               :branch "main" :sha "2d68e1e22fec94db61d768a2dfa5f137b7138415"}
+        org.mentat/emmy-viewers {:mvn/version "0.3.2"}
+        io.github.nextjournal/clerk  {:mvn/version "0.14.919"}
+        quil/quil {:mvn/version "4.3.1563"}
+        criterium/criterium {:mvn/version"0.4.6"}
+        }}
