@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Deps: org.mentat/mathbox.cljs:0.2.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mentat/mathbox.cljs/0.2.2/mathbox.cljs-0.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

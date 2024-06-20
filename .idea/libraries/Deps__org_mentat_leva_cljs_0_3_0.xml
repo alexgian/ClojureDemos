@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Deps: org.mentat/leva.cljs:0.3.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mentat/leva.cljs/0.3.0/leva.cljs-0.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

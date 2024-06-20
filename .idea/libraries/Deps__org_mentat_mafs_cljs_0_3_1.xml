@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Deps: org.mentat/mafs.cljs:0.3.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mentat/mafs.cljs/0.3.1/mafs.cljs-0.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

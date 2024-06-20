@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Deps: org.mentat/emmy:0.31.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mentat/emmy/0.31.0/emmy-0.31.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

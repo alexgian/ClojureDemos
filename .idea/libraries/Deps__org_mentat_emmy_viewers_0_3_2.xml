@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Deps: org.mentat/emmy-viewers:0.3.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mentat/emmy-viewers/0.3.2/emmy-viewers-0.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
