@@ -1,3 +1,4 @@
+^{:nextjournal.clerk/visibility {:code :hide}}
 (ns core)
 (require '[emmy.env :as env])
 (env/bootstrap-repl!)
