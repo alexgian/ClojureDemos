@@ -2,7 +2,8 @@
 (:refer-clojure
   :exclude [* + - / = abs compare denominator divide
             infinite? numerator partial ref zero?])
-(:require [emmy.calculus.manifold :as cm]
+(:require
+  [emmy.calculus.manifold :as cm]
   [emmy.clerk :as ec]
   [emmy.env :refer :all]
   [emmy.leva :as leva]
