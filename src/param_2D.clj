@@ -39,11 +39,7 @@
 ^{:nextjournal.clerk/visibility {:code :hide :result :show}}
 (ev/with-let
   [!coeffs {:xa 5 :ya 3 :xb (* pi 7/6) :yb pi}]
-  (let [x_a (ev/get !coeffs :xa)
-        x_b (ev/get !coeffs :xb)
-        y_a (ev/get !coeffs :ya)
-        y_b (ev/get !coeffs :yb)
-        stepsize (/ pi 6)]
+  (let [stepsize (/ pi 30)]
     (mafs/mafs
       (emmy.leva/controls
         {:folder {:name "Lissajous controls"}
@@ -57,14 +53,12 @@
       (mafs/cartesian)
       ; the fragment below is right, but would still like to have it
       ;  called from outside this scope, as (param_eqn_1 xa xb ya yb)
-      [:<>
-       (mafs/parametric {:xy    `(fn [t]
-                                [(* ~x_a (sin (* ~x_b t)))
-                                 (* ~y_a (cos (* ~y_b t)))])
-                         :t     [0 (* 12 pi)]
-                         :color "#43CC50EB"
-                         })]
-      )))
+      (mafs/parametric {:xy (ev/with-params
+                              {:atom !coeffs :params [:xa :xb :ya :yb]}
+                              param_eqn_1)
+                        :t     [0 (* 12 pi)]
+                        :color "#43CC50EB"
+                        }))))
 
 ;; ToDo
 ;; * trefoils
