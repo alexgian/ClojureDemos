@@ -20,47 +20,59 @@
 ;;## Parametric equations with _mafs_
 ;;##### Coupled harmonic oscillator (Lissajous figure)
 ;; Commonly created on oscilloscopes by supplying two different signals
-;; on the _x_ and _y_ axes.  This is one of the simpler forms, determined
-;; by the coefficients preceding the _sin_ and _cos_ functions, below.
+;; on the _x_ and _y_ axes,  these are some of the simpler forms, determined
+;; by the coefficients preceding the _sin_ and _cos_ functions in the equation
+;; below.
 ;;
-;; This is the equation we _should_ be using.
+;; Move the sliders to see the shape change.  Note that the _xa_ and _ya_
+;; parameters only affect scaling.  The ratio of the _xb_ to the _yb_ value
+;; determines the shape of the looping.  For simple ratios a simple pattern
+;; is produced.  If the values are the same, then it's an ellipse, of course.
 ^{:nextjournal.clerk/visibility {:code :show :result :hide}}
-(defn param_eqn_1 [xa ya xb yb]
+(defn param_eqn_1 [xa xb ya yb]
         (fn [t]
-          [(* xa (sin (* ya t)))
+          [(* xa (sin (* xb t)))
            (* ya (cos (* yb t)))]))
 
 ;;
 ;;
 ^{:nextjournal.clerk/visibility {:code :hide :result :show}}
 (ev/with-let
-  [!coeffs {:xa 3 :ya 2 :xb 2 :yb 5}]
-
+  [!coeffs {:xa 5 :ya 3 :xb (/ pi 2) :yb pi}]
+  (let [x_a (ev/get !coeffs :xa)
+        x_b (ev/get !coeffs :xb)
+        y_a (ev/get !coeffs :ya)
+        y_b (ev/get !coeffs :yb)
+        stepsize (/ pi 6)]
     (mafs/mafs
+      (emmy.leva/controls
+        {:folder {:name "Lissajous controls"}
+         :schema
+         {:xa {:min 0.5 :max 5 :step 0.05}
+          :ya {:min 0.5 :max 3 :step 0.05}
+          :xb {:min 0 :max (* 2 pi) :step stepsize}
+          :yb {:min 0 :max (* 2 pi) :step stepsize}
+          }
+         :atom !coeffs})
       (mafs/cartesian)
-      (let [x_a (ev/get !coeffs :xa)
-            y_a (ev/get !coeffs :ya)
-            x_b (ev/get !coeffs :xb)
-            y_b (ev/get !coeffs :yb)
-            ]
-      ; the fragment below is right, but would still like
-      ; to have it defined outside this scope (param_eqn_1 a b c d)
+      ; the fragment below is right, but would still like to have it
+      ;  called from outside this scope, as (param_eqn_1 xa xb ya yb)
       [:<>
-       (emmy.leva/controls
-                     {:folder {:name "Lissajous controls"}
-                      :schema
-                      {:xa {:min 0.5 :max 5 :step 0.05}
-                       :xb {:min 0.5 :max 5 :step 0.05}
-                       :ya {:min 0.5 :max 5 :step 0.05}
-                       :yb {:min 0.5 :max 5 :step 0.05}
-                       }
-                      :atom !coeffs})
-       (mafs/parametric {:xy `(fn [t]
-                                [(* ~(ev/get !coeffs :xa) (sin (* ~(ev/get !coeffs :ya) t)))
-                                 (* ~x_b (cos (* ~y_b t)))])
-                         :t [0 (* 10 pi)]
-                         :color :green})]
-      )
-    ))
+       (mafs/parametric {:xy    `(fn [t]
+                                [(* ~x_a (sin (* ~x_b t)))
+                                 (* ~y_a (cos (* ~y_b t)))])
+                         :t     [0 (* 12 pi)]
+                         :color "#43CC50EB"
+                         })]
+      )))
 
-;; epicycles
+;; ToDo
+;; * trefoils
+;; * epicycles
+
+^{:nextjournal.clerk/visibility {:code :hide :result :hide}}
+(comment
+  `(fn [t]
+     [(* ~x_a (sin (* ~x_b t)))
+      (* ~y_a (cos (* ~y_b t)))])
+  )

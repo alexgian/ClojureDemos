@@ -31,21 +31,6 @@
         (assoc opts :f f))
       plot/scene)))
 
-(plot/of-xy
-  {:x-lines 8
-   :y-lines 8
-   :x-range [-2 2]
-   :y-range [-2 2]
-   :color   "#306BFF"
-   :z       (fn [[x y]]
-              (- (square x) (square y)))})
-
-(plot/of-yz
-  {:y-range [-2 2]
-   :z-range [-2 2]
-   :x       (fn [[x y]]
-              (- (square x)
-                 (square y)))})
 
 (defn toroidal->rect [R r]
   (fn [[theta phi]]
@@ -59,8 +44,8 @@
 
 (surface
   {:f (toroidal->rect 2 0.5)
-   :u [0 (* 2 Math/PI)]
-   :v [0 (* 2 Math/PI)]})
+   :u [0 (*  Math/PI)]
+   :v [0 (*  Math/PI)]})
 
 ;; Parametrized torus:
 
