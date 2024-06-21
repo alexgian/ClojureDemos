@@ -38,7 +38,7 @@
 ;;
 ^{:nextjournal.clerk/visibility {:code :hide :result :show}}
 (ev/with-let
-  [!coeffs {:xa 5 :ya 3 :xb (/ pi 2) :yb pi}]
+  [!coeffs {:xa 5 :ya 3 :xb (* pi 7/6) :yb pi}]
   (let [x_a (ev/get !coeffs :xa)
         x_b (ev/get !coeffs :xb)
         y_a (ev/get !coeffs :ya)
