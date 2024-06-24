@@ -7,8 +7,11 @@
 (ec/serve! {:browse true})
 
 ;; test all is OK
-(->
-  (let [Lagrangian (emmy.mechanics.lagrange/L-harmonic 'm 'k)]
-    (((Lagrange-equations Lagrangian) (literal-function 'x)) 't))
-  simplify
-  )
+
+  (let [aLagrangian (emmy.mechanics.lagrange/L-harmonic 'm 'k)
+        someFunction (literal-function 'x)
+        eqnOfMotion ((Lagrange-equations aLagrangian) someFunction)]
+    (-> (eqnOfMotion 't)
+        simplify
+        ->infix
+        ))

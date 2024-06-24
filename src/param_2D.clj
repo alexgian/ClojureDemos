@@ -29,16 +29,15 @@
 ;; determines the shape of the looping.  For simple ratios a simple pattern
 ;; is produced.  If the values are the same, then it's an ellipse, of course.
 ^{:nextjournal.clerk/visibility {:code :show :result :hide}}
-(defn param_eqn_1 [xa xb ya yb]
-        (fn [t]
-          [(* xa (sin (* xb t)))
-           (* ya (cos (* yb t)))]))
-
+(defn param_eqn_1 [xa xb ya yb d]
+  (fn [t]
+    [(* xa (sin (+ (* xb t) d)))
+     (* ya (cos (* yb t)))]))
 ;;
 ;;
 ^{:nextjournal.clerk/visibility {:code :hide :result :show}}
 (ev/with-let
-  [!coeffs {:xa 5 :ya 3 :xb (* pi 7/6) :yb pi}]
+  [!coeffs {:xa 5 :ya 3 :xb (* pi 7/6) :yb pi :d 0}]
   (let [stepsize (/ pi 30)]
     (mafs/mafs
       (emmy.leva/controls
@@ -48,13 +47,12 @@
           :ya {:min 0.5 :max 3 :step 0.05}
           :xb {:min 0 :max (* 2 pi) :step stepsize}
           :yb {:min 0 :max (* 2 pi) :step stepsize}
+          :d {:min 0 :max pi :step (/ pi 50)}
           }
          :atom !coeffs})
       (mafs/cartesian)
-      ; the fragment below is right, but would still like to have it
-      ;  called from outside this scope, as (param_eqn_1 xa xb ya yb)
       (mafs/parametric {:xy (ev/with-params
-                              {:atom !coeffs :params [:xa :xb :ya :yb]}
+                              {:atom !coeffs :params [:xa :xb :ya :yb :d]}
                               param_eqn_1)
                         :t     [0 (* 12 pi)]
                         :color "#43CC50EB"
@@ -64,9 +62,3 @@
 ;; * trefoils
 ;; * epicycles
 
-^{:nextjournal.clerk/visibility {:code :hide :result :hide}}
-(comment
-  `(fn [t]
-     [(* ~x_a (sin (* ~x_b t)))
-      (* ~y_a (cos (* ~y_b t)))])
-  )
